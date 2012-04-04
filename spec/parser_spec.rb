@@ -36,19 +36,32 @@ mått
 PDF
   end
 
+  let(:parse_result) { Parser.new(text).parse }
   subject do
-    Parser.new(text).parse
+    parse_result
   end
 
-  it 'should find first day' do
-    subject.days.first.date.should == Date.new(2012,04,01)
+  context 'first day' do
+    subject { parse_result.days.first }
+
+    it 'should have correct date' do
+      subject.date.should == Date.new(2012,04,01)
+    end
   end
 
-  it 'should find first day of second week' do 
-    subject.days[1].date.should == Date.new(2012,04,02)
+  context 'first day of second week' do
+    subject { parse_result.days[1] }
+
+    it 'should have correct date' do 
+      subject.date.should == Date.new(2012,04,02)
+    end
+
   end
 
-  it 'should find second day of second week' do
-    subject.days[2].date.should == Date.new(2012,04,03)
+  context 'second day of second week' do
+    subject { parse_result.days[2] }
+    it 'should have correct date' do
+      subject.date.should == Date.new(2012,04,03)
+    end
   end
 end
