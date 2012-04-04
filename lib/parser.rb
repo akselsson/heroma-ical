@@ -10,7 +10,7 @@ class Parser
     schedule_lines = lines.drop_while {|l| !(l =~ /Tider/) }.drop(1).take_while {|l| !(l =~ /Anmärkningar/) }
     week_lines = get_weeks(schedule_lines)
     dates = week_lines.collect {|ll| WeekParser.new.parse(ll[0],"") }
-    dates.first
+    ParseResult.new(dates.flatten)
   end
 
   def get_weeks(lines)
@@ -30,19 +30,17 @@ end
 class WeekParser
   def parse(date_line,times_line)
     dates = dates(date_line)
-    ParseResult.new(dates)
   end
 
   def dates(date_line)
-    match = /(\d\d)(\d\d)(\d\d)/.match(date_line)
-    raise "No dates found in #{date_line}" unless match
-
-    year = "20#{match[1]}".to_i
-    month = match[2].to_i
-    day = match[3].to_i
-
-    [Date.new(year,month,day)]
-
+    dates = []
+    date_line.scan(/(\d\d)(\d\d)(\d\d)/) do |y,m,d|
+      year = "20#{y}".to_i
+      month = m.to_i
+      day = d.to_i
+      dates << Date.new(year,month,day)
+    end
+    dates
   end
 end
 

@@ -43,4 +43,12 @@ PDF
   it 'should find first day' do
     subject.days.first.date.should == Date.new(2012,04,01)
   end
+
+  it 'should find first day of second week' do 
+    subject.days[1].date.should == Date.new(2012,04,02)
+  end
+
+  it 'should find second day of second week' do
+    subject.days[2].date.should == Date.new(2012,04,03)
+  end
 end
