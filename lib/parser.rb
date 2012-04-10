@@ -49,13 +49,18 @@ class ParseResult
     @dates = dates
   end
   def days
-    @dates.collect {|d| Day.new(d) }
+    @dates.collect {|d| Day.new(d,false) }
   end
 end
 
 class Day
   attr_reader :date
-  def initialize(date)
+  def initialize(date,is_workday)
     @date = date
+    @is_workday = is_workday
+  end
+
+  def workday?
+    @is_workday
   end
 end

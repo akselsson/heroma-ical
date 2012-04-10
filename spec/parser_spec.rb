@@ -47,6 +47,8 @@ PDF
     it 'should have correct date' do
       subject.date.should == Date.new(2012,04,01)
     end
+
+    it { should_not be_workday }
   end
 
   context 'first day of second week' do
@@ -55,6 +57,8 @@ PDF
     it 'should have correct date' do 
       subject.date.should == Date.new(2012,04,02)
     end
+
+    it { should be_workday }
 
   end
 
