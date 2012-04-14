@@ -7,4 +7,8 @@ class Schedule
   def self.parse(strings)
     Schedule.new EventParser.parse(strings)
   end
+
+  def add_event(start_time,end_time)
+    events << Event.new(start_time,end_time)
+  end
 end

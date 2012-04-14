@@ -1,7 +1,8 @@
 #encoding: utf-8
 require 'spec_helper'
 require 'states/days_state'
-
+require 'date'
+require 'schedule'
 
 describe DaysState do
   context 'for weeknumber' do
@@ -20,5 +21,18 @@ describe DaysState do
     it 'adds a day' do
       subject.days.should == [Date.new(2012,4,1)] 
     end
+  end
+
+  context 'for time' do
+    before { subject.days << Date.new(2012,04,01) }
+    let!(:next_state) {subject.visit('13:00-21:30(30)') }
+
+    it 'removes a day' do
+      subject.days.should be_empty
+    end
+    it 'adds an event' do
+      subject.schedule.events.should == [Event.new(DateTime.parse('2012-04-01 13:00'),DateTime.parse('2012-04-01 21:30'))]
+    end
+
   end
 end
