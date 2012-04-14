@@ -1,7 +1,7 @@
 require 'spec_helper'
-require 'parser'
+require 'event_parser'
 
-describe Parser do
+describe EventParser do
 
 
 end
