@@ -22,7 +22,7 @@ class Schedule
     RiCal.Calendar do |cal|
       events.each do |e|
         cal.event do |event|
-          event.description = 'Anna jobbar'
+          event.summary = 'Anna jobbar'
           event.dtstart = e.starts.with_floating_timezone
           event.dtend = e.ends.with_floating_timezone
         end
