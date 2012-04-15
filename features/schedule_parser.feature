@@ -19,7 +19,7 @@ Egenskap: Schematolkning
       |Tider|
       |V. 14|
       |Mån 120402|
-      |Tis 12040333|
+      |Tis 120403|
       |07:00-15:30(30)|
       |13:00-21:30(m)|
     Så ska följande schema skapas
