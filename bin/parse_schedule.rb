@@ -2,7 +2,6 @@
 require_relative '../lib/schedule'
 require 'pdf-reader'
 
-puts ARGV[0]
 reader = PDF::Reader.new(ARGV[0])
 
 strings = []
@@ -22,4 +21,6 @@ reader.pages.each do |page|
 end
 
 schedule = Schedule.parse walker.strings
-puts schedule.to_s
+cal = schedule.to_ical
+cal.export_to $stdout
+

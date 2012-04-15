@@ -18,6 +18,8 @@ class DaysState
       start_date = combine_date_time(date,start_time)
       end_date = combine_date_time(date,end_time)
       self.schedule.add_event(start_date,end_date)
+    else
+      @days.shift
     end
     self
   end

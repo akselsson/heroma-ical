@@ -49,6 +49,5 @@ describe DaysState do
     it 'adds an event' do
       subject.schedule.events.should == [Event.new(DateTime.parse('2012-04-01 13:00'),DateTime.parse('2012-04-01 21:30'))]
     end
-
   end
 end
