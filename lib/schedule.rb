@@ -5,7 +5,7 @@ class Schedule
     @events = events 
   end
   def self.parse(strings)
-    Schedule.new EventParser.parse(strings)
+    EventParser.parse(strings)
   end
 
   def add_event(start_time,end_time)

@@ -1,7 +1,27 @@
-require 'event'
+require_relative 'event'
+require_relative 'schedule'
+
+require_relative 'states/header_state'
+require_relative 'states/state'
+
 class EventParser
-  def self.parse(strings)
-    [Event.new(DateTime.parse('2012-04-02T07:00:00+00:00'),DateTime.parse('2012-04-02T15:30:00+00:00'))]
+  attr_reader :schedule
+
+  def initialize
+    @state = HeaderState.new
+    @schedule = Schedule.new
   end
 
+  def parse(strings)
+    strings.each do |s|
+      @state.schedule = @schedule if @state.respond_to?(:schedule)
+      @state=@state.visit s
+    end
+  end
+
+  def self.parse(strings)
+    parser = EventParser.new
+    parser.parse strings
+    parser.schedule
+  end
 end

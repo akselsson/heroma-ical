@@ -17,9 +17,8 @@ class DaysState
       date = @days.pop
       start_date = combine_date_time(date,start_time)
       end_date = combine_date_time(date,end_time)
-      schedule.add_event(start_date,end_date)
+      self.schedule.add_event(start_date,end_date)
     end
-
     self
   end
 

@@ -1,3 +1,5 @@
+require_relative 'days_state'
+
 class HeaderState
 
   def visit(text)
