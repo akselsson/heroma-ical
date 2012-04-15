@@ -23,8 +23,8 @@ class Schedule
       events.each do |e|
         cal.event do |event|
           event.description = 'Anna jobbar'
-          event.dtstart = e.starts
-          event.dtend = e.ends
+          event.dtstart = e.starts.with_floating_timezone
+          event.dtend = e.ends.with_floating_timezone
         end
       end
     end
