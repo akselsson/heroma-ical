@@ -15,11 +15,15 @@ class DaysState
       start_time = Time.parse $1
       end_time = Time.parse $2
       date = @days.pop
-      start_date = DateTime.new(date.year,date.month,date.day,start_time.hour,start_time.min)
-      end_date = DateTime.new(date.year,date.month,date.day,end_time.hour,end_time.min)
+      start_date = combine_date_time(date,start_time)
+      end_date = combine_date_time(date,end_time)
       schedule.add_event(start_date,end_date)
     end
 
     self
+  end
+
+  def combine_date_time(date,time)
+    DateTime.new(date.year,date.month,date.day,time.hour,time.min)
   end
 end
