@@ -11,7 +11,7 @@ class Schedule
   end
 
   def add_event(start_time,end_time)
-    events << Event.new(start_time,end_time)
+    events << Event.new(start_time,end_time,'')
   end
 
   def to_s
@@ -22,7 +22,7 @@ class Schedule
     RiCal.Calendar do |cal|
       events.each do |e|
         cal.event do |event|
-          event.summary = 'Anna jobbar'
+          event.summary = e.description
           event.dtstart = e.starts.with_floating_timezone
           event.dtend = e.ends.with_floating_timezone
         end

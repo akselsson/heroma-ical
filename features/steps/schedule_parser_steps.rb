@@ -7,7 +7,7 @@ När /^jag tolkar ett schema med$/ do |table|
 end
 
 Så /^ska följande schema skapas$/ do |table|
-  events = table.hashes.map {|h| Event.new(DateTime.parse(h["start"]),DateTime.parse(h["slut"])) }
+  events = table.hashes.map {|h| Event.new(DateTime.parse(h["start"]),DateTime.parse(h["slut"]),h["beskrivning"]) }
 
   @schedule.events.should == events
 end
